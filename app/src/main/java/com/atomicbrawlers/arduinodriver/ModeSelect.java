@@ -72,14 +72,14 @@ public class ModeSelect extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        //Example: startActivity(new Intent(this, Auto.class));
-
         if (id == R.id.tab_GTA_drive) {
 
         } else if (id == R.id.tab_tank_drive) {
 
         } else if (id == R.id.menu_stop) {
 
+        } else if (id == R.id.menu_test) {
+            startActivity(new Intent(this, TestMode.class));
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
