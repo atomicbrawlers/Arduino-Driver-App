@@ -17,37 +17,37 @@ public class TestMode extends AppCompatActivity {
      * Whether or not the system UI should be auto-hidden after
      * {@link #AUTO_HIDE_DELAY_MILLIS} milliseconds.
      */
-    private static final boolean AUTO_HIDE = true;
+ //   private static final boolean AUTO_HIDE = true;
 
     /**
      * If {@link #AUTO_HIDE} is set, the number of milliseconds to wait after
      * user interaction before hiding the system UI.
      */
-    private static final int AUTO_HIDE_DELAY_MILLIS = 3000;
+//    private static final int AUTO_HIDE_DELAY_MILLIS = 3000;
 
     /**
      * Some older devices needs a small delay between UI widget updates
      * and a change of the status and navigation bar.
      */
-    private static final int UI_ANIMATION_DELAY = 300;
-    private final Handler mHideHandler = new Handler();
+ /*   private static final int UI_ANIMATION_DELAY = 300;
+    private final Handler mHideHandler = new Handler(); */
     private View mContentView;
-    private final Runnable mHidePart2Runnable = new Runnable() {
+  /*  private final Runnable mHidePart2Runnable = new Runnable() {
         @SuppressLint("InlinedApi")
         @Override
-        public void run() {
+        public void run() { */
             // Delayed removal of status and navigation bar
 
             // Note that some of these constants are new as of API 16 (Jelly Bean)
             // and API 19 (KitKat). It is safe to use them, as they are inlined
             // at compile-time and do nothing on earlier devices.
-            mContentView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LOW_PROFILE
+     /*       mContentView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LOW_PROFILE
                     | View.SYSTEM_UI_FLAG_FULLSCREEN
                     | View.SYSTEM_UI_FLAG_LAYOUT_STABLE
                     | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
                     | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-                    | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
-        }
+                    | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION); */
+  /*      }
     };
     private View mControlsView;
     private final Runnable mShowPart2Runnable = new Runnable() {
@@ -67,13 +67,13 @@ public class TestMode extends AppCompatActivity {
         public void run() {
             hide();
         }
-    };
+    }; */
     /**
      * Touch listener to use for in-layout UI controls to delay hiding the
      * system UI. This is to prevent the jarring behavior of controls going away
      * while interacting with activity UI.
      */
-    private final View.OnTouchListener mDelayHideTouchListener = new View.OnTouchListener() {
+    /*   private final View.OnTouchListener mDelayHideTouchListener = new View.OnTouchListener() {
         @Override
         public boolean onTouch(View view, MotionEvent motionEvent) {
             if (AUTO_HIDE) {
@@ -81,7 +81,7 @@ public class TestMode extends AppCompatActivity {
             }
             return false;
         }
-    };
+    }; */
 
     @Override
     //First thing to run; acts as a constructor
@@ -90,9 +90,14 @@ public class TestMode extends AppCompatActivity {
 
         setContentView(R.layout.activity_mode_test);
 
-        mVisible = true;
-        mControlsView = findViewById(R.id.fullscreen_content_controls);
+     //   mVisible = true;
+     //   mControlsView = findViewById(R.id.fullscreen_content_controls);
         mContentView = findViewById(R.id.fullscreen_content);
+        mContentView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_IMMERSIVE
+                | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                | View.SYSTEM_UI_FLAG_FULLSCREEN
+                | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY); //Allows user to swipe to temporarily bring up System UI
+        mContentView.setVisibility(View.VISIBLE); //Ensures that the system UI is actually gone
 
 
         // Set up the user interaction to manually show or hide the system UI.
@@ -106,10 +111,15 @@ public class TestMode extends AppCompatActivity {
         // Upon interacting with UI controls, delay any scheduled hide()
         // operations to prevent the jarring behavior of controls going away
         // while interacting with the UI.
-        findViewById(R.id.dummy_button).setOnTouchListener(mDelayHideTouchListener);
+       // findViewById(R.id.dummy_button).setOnTouchListener(mDelayHideTouchListener);
     }
 
-    @Override
+    public void resetFullscreen(View view){
+        mContentView.setVisibility(View.INVISIBLE);
+        mContentView.setVisibility(View.VISIBLE);
+    }
+
+/*    @Override
     //Runs after onCreate
     protected void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
@@ -118,31 +128,31 @@ public class TestMode extends AppCompatActivity {
         // created, to briefly hint to the user that UI controls
         // are available.
      //   delayedHide(100);
-    }
+    } */
 
-    private void toggle() {
+/*    private void toggle() {
         if (mVisible) {
             hide();
         } else {
             show();
         }
-    }
+    } */
 
-    private void hide() {
+ //   private void hide() {
         // Hide UI first
      /*   ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
             actionBar.hide();
         } */ //Don't hide action bar
-        mControlsView.setVisibility(View.GONE);
+ /*       mControlsView.setVisibility(View.GONE);
         mVisible = false;
 
         // Schedule a runnable to remove the status and navigation bar after a delay
         mHideHandler.removeCallbacks(mShowPart2Runnable);
         mHideHandler.postDelayed(mHidePart2Runnable, UI_ANIMATION_DELAY);
-    }
+    } */
 
-    @SuppressLint("InlinedApi")
+/*    @SuppressLint("InlinedApi")
     private void show() {
         // Show the system bar
         mContentView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
@@ -152,14 +162,14 @@ public class TestMode extends AppCompatActivity {
         // Schedule a runnable to display UI elements after a delay
         mHideHandler.removeCallbacks(mHidePart2Runnable);
         mHideHandler.postDelayed(mShowPart2Runnable, UI_ANIMATION_DELAY);
-    }
+    }*/
 
     /**
      * Schedules a call to hide() in [delay] milliseconds, canceling any
      * previously scheduled calls.
      */
-    private void delayedHide(int delayMillis) {
+ /*   private void delayedHide(int delayMillis) {
         mHideHandler.removeCallbacks(mHideRunnable);
         mHideHandler.postDelayed(mHideRunnable, delayMillis);
-    }
+    } */
 }
