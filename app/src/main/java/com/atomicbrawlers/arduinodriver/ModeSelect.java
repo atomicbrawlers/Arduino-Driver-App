@@ -73,7 +73,7 @@ public class ModeSelect extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.tab_GTA_drive) {
-
+            startActivity(new Intent(this, GTADrive.class));
         } else if (id == R.id.tab_tank_drive) {
 
         } else if (id == R.id.menu_stop) {

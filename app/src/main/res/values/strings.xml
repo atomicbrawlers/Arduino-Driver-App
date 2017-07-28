@@ -9,4 +9,6 @@
     <string name="title_activity_test">Test Mode</string>
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
+
+    <string name="title_activity_gtadrive">GTA Drive</string>
 </resources>

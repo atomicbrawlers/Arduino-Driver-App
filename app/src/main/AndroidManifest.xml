@@ -21,9 +21,15 @@
         </activity>
         <activity
             android:name=".TestMode"
-            android:screenOrientation="landscape"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_test"
+            android:screenOrientation="landscape"
+            android:theme="@style/FullscreenTheme" />
+        <activity
+            android:name=".GTADrive"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_gtadrive"
+            android:screenOrientation="landscape"
             android:theme="@style/FullscreenTheme"></activity>
     </application>
 

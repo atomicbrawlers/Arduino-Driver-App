@@ -41,7 +41,7 @@ public class TestMode extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mode_test);
 
-        mContentView = findViewById(R.id.fullscreen_content);
+        mContentView = findViewById(R.id.fullscreen_content_test);
 
         mContentView.setSystemUiVisibility(FULLSCREEN);
 

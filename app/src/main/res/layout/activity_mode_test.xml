@@ -11,7 +11,7 @@
          is needed to present your content, e.g. VideoView, SurfaceView,
          TextureView, etc. -->
     <TextView
-        android:id="@+id/fullscreen_content"
+        android:id="@+id/fullscreen_content_test"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:gravity="center"
