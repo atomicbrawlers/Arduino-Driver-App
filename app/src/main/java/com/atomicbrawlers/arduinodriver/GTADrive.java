@@ -4,6 +4,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
+//TODO: Declare and initialize all Views
+//TODO: Connect percentage TextViews to SeekBars
+
 public class GTADrive extends AppCompatActivity {
 
     private View mContentView;
