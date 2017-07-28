@@ -75,7 +75,7 @@ public class ModeSelect extends AppCompatActivity
         if (id == R.id.tab_GTA_drive) {
             startActivity(new Intent(this, GTADrive.class));
         } else if (id == R.id.tab_tank_drive) {
-
+            startActivity(new Intent(this, TankDrive.class));
         } else if (id == R.id.menu_stop) {
 
         } else if (id == R.id.menu_test) {

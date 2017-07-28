@@ -30,6 +30,12 @@
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_gtadrive"
             android:screenOrientation="landscape"
+            android:theme="@style/FullscreenTheme" />
+        <activity
+            android:name=".TankDrive"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_tank_drive"
+            android:screenOrientation="landscape"
             android:theme="@style/FullscreenTheme"></activity>
     </application>
 

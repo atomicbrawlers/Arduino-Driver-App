@@ -11,4 +11,6 @@
     <string name="dummy_content">DUMMY\nCONTENT</string>
 
     <string name="title_activity_gtadrive">GTA Drive</string>
+
+    <string name="title_activity_tank_drive">Tank Drive</string>
 </resources>

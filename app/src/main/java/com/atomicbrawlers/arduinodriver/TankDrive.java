@@ -7,7 +7,7 @@ import android.view.View;
 //TODO: Declare and initialize all Views
 //TODO: Connect percentage TextViews to SeekBars
 
-public class GTADrive extends AppCompatActivity {
+public class TankDrive extends AppCompatActivity {
 
     private View mContentView;
 
@@ -20,9 +20,9 @@ public class GTADrive extends AppCompatActivity {
     //First thing to run; acts as a constructor
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_gta_drive);
+        setContentView(R.layout.activity_tank_drive);
 
-        mContentView = findViewById(R.id.fullscreen_content_gta);
+        mContentView = findViewById(R.id.fullscreen_content_tank);
 
         mContentView.setSystemUiVisibility(FULLSCREEN);
     }
