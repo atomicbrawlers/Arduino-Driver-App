@@ -34,7 +34,7 @@
         app:layout_constraintHorizontal_bias="1.0" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/stop_tank"
         android:layout_width="125dp"
         android:layout_height="100dp"
         android:layout_marginBottom="8dp"
@@ -50,7 +50,7 @@
         app:layout_constraintVertical_bias="0.089" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/emergency_stop_tank"
         android:layout_width="125dp"
         android:layout_height="100dp"
         android:layout_marginBottom="8dp"
