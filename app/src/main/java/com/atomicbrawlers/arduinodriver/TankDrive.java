@@ -40,6 +40,7 @@ public class TankDrive extends AppCompatActivity {
                     //Send right value
                 }
             } //thread stops outside loop
+            //TODO: Send motor values of ZERO here to ensure the robot stops
         }
 
         public void stop(){

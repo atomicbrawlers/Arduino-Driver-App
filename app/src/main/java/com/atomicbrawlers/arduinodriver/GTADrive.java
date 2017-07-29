@@ -39,6 +39,7 @@ public class GTADrive extends AppCompatActivity {
                 //Send left speed
                 //Send right speed
             } //thread stops outside loop
+            //TODO: Send motor values of ZERO here to ensure the robot stops
         }
 
         public void stop(){
