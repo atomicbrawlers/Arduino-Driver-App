@@ -26,7 +26,7 @@
         tools:layout_editor_absoluteY="340dp" />
 
     <SeekBar
-        android:id="@+id/direction_bar_gta"
+        android:id="@+id/slew_gta"
         android:layout_width="150dp"
         android:layout_height="100dp"
         android:layout_marginBottom="8dp"
@@ -45,7 +45,7 @@
         app:layout_constraintVertical_bias="0.5" />
 
     <SeekBar
-        android:id="@+id/drive_bar_gta"
+        android:id="@+id/throttle_gta"
         android:layout_width="150dp"
         android:layout_height="100dp"
         android:layout_marginBottom="8dp"
@@ -72,6 +72,7 @@
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginTop="8dp"
+        android:onClick="emergencyStop"
         android:text="EMERGENCY STOP"
         android:textColor="@android:color/holo_red_dark"
         android:textSize="17sp"
@@ -90,6 +91,7 @@
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginTop="8dp"
+        android:onClick="stop"
         android:text="STOP"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -100,7 +102,7 @@
         app:layout_constraintVertical_bias="1.0" />
 
     <TextView
-        android:id="@+id/direction_bar_percentage_gta"
+        android:id="@+id/slew_percentage_gta"
         android:layout_width="wrap_content"
         android:layout_height="24dp"
         android:layout_marginBottom="8dp"
@@ -117,7 +119,7 @@
         app:layout_constraintVertical_bias="0.247" />
 
     <TextView
-        android:id="@+id/drive_bar_percentage_gta"
+        android:id="@+id/throttle_percentage_gta"
         android:layout_width="wrap_content"
         android:layout_height="24dp"
         android:layout_marginBottom="8dp"
