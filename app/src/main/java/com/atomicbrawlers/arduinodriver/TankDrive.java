@@ -9,14 +9,12 @@ import android.widget.TextView;
 
 import static android.R.color.holo_red_dark;
 import static android.R.color.holo_red_light;
-import static com.atomicbrawlers.arduinodriver.R.style.FullscreenTheme;
-
 
 public class TankDrive extends AppCompatActivity {
 
     private View mContentView;
     private Button //mStop,
-            mEmergencyStop;
+                   mEmergencyStop;
     private SeekBar mLeftDriveInput, mRightDriveInput;
     private TextView mLeftDrivePercentage, mRightDrivePercentage;
 
@@ -27,9 +25,31 @@ public class TankDrive extends AppCompatActivity {
     private final int RELATIVE_ZERO = 100;
     private final int THRESH = 30;
     private final int FULLSCREEN = View.SYSTEM_UI_FLAG_IMMERSIVE
-            | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
-            | View.SYSTEM_UI_FLAG_FULLSCREEN
-            | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
+                                 | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                                 | View.SYSTEM_UI_FLAG_FULLSCREEN
+                                 | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
+
+    class BluetoothTransfer implements Runnable {
+        private volatile boolean exit = false;
+
+        public void run(){
+            while(!exit) { //thread runs inside loop
+                if (!emergencyStop) {
+                    //TODO: Send values through Bluetooth here
+                    //Send left value
+                    //Send right value
+                }
+            } //thread stops outside loop
+        }
+
+        public void stop(){
+            exit = true;
+        }
+    }
+
+    private final BluetoothTransfer rDataTransfer= new BluetoothTransfer();
+
+    private final Thread tDataTransfer = new Thread(rDataTransfer);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,13 +66,14 @@ public class TankDrive extends AppCompatActivity {
         mLeftDrivePercentage  = (TextView) findViewById(R.id.left_drive_percentage_tank);
         mRightDrivePercentage = (TextView) findViewById(R.id.right_drive_percentage_tank);
 
-        setUpListeners();
-
         emergencyStop = false;
         leftInput  = RELATIVE_ZERO;
         rightInput = RELATIVE_ZERO;
         leftSpeed  = 0;
         rightSpeed = 0;
+
+        setUpListeners();
+        tDataTransfer.start();
     }
 
     private void setUpListeners(){
@@ -60,9 +81,15 @@ public class TankDrive extends AppCompatActivity {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 leftInput = progress;
-                interpretInput();
+
+                //Converts raw SeekBar value to a relative one
+                if (Math.abs(leftInput - RELATIVE_ZERO) > THRESH){ //Check left input
+                    leftSpeed = leftInput - RELATIVE_ZERO;
+                } else {
+                    leftSpeed = 0;
+                }
+
                 mLeftDrivePercentage.setText(String.valueOf(leftSpeed) + "%");
-                sendToRobot();
             }
 
             @Override
@@ -80,9 +107,15 @@ public class TankDrive extends AppCompatActivity {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 rightInput = progress;
-                interpretInput();
+
+                //Converts raw SeekBar value to a relative one
+                if (Math.abs(rightInput - RELATIVE_ZERO) > THRESH){ //Check right input
+                    rightSpeed = rightInput - RELATIVE_ZERO;
+                } else {
+                    rightSpeed = 0;
+                }
+
                 mRightDrivePercentage.setText(String.valueOf(rightSpeed) + "%");
-                sendToRobot();
             }
 
             @Override
@@ -97,14 +130,9 @@ public class TankDrive extends AppCompatActivity {
         });
     }
 
-    public void sendToRobot(){
-        if (!emergencyStop) {
-            //TODO: Send values through Bluetooth here
-        }
-    }
-
     public void emergencyStop(View view){
         emergencyStop = true;
+        rDataTransfer.stop();
         stop(view);
 
         mEmergencyStop.setBackgroundColor(getResources().getColor(holo_red_dark,  this.getTheme()));
@@ -116,26 +144,10 @@ public class TankDrive extends AppCompatActivity {
         leftSpeed  = 0;
         rightSpeed = 0;
 
-        sendToRobot();
-
         mLeftDrivePercentage .setText(String.valueOf(leftSpeed)  + "%");
         mRightDrivePercentage.setText(String.valueOf(rightSpeed) + "%");
 
-        mLeftDriveInput. setProgress(RELATIVE_ZERO);
+        mLeftDriveInput .setProgress(RELATIVE_ZERO);
         mRightDriveInput.setProgress(RELATIVE_ZERO);
-    }
-
-    public void interpretInput(){ //Converts raw SeekBar values to appropriate motor values
-        if (Math.abs(leftInput - RELATIVE_ZERO) > THRESH){ //Check left input
-            leftSpeed = leftInput - RELATIVE_ZERO;
-        } else {
-            leftSpeed = 0;
-        }
-
-        if (Math.abs(rightInput - RELATIVE_ZERO) > THRESH){ //Check right input
-            rightSpeed = rightInput - RELATIVE_ZERO;
-        } else {
-            rightSpeed = 0;
-        }
     }
 }

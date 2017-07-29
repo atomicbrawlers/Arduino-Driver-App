@@ -10,8 +10,6 @@ import android.widget.TextView;
 import static android.R.color.holo_red_dark;
 import static android.R.color.holo_red_light;
 
-//TODO: Connect percentage TextViews to SeekBars
-
 public class GTADrive extends AppCompatActivity {
 
     private View mContentView;
@@ -38,6 +36,8 @@ public class GTADrive extends AppCompatActivity {
         public void run(){
             while(!exit) { //thread runs inside loop
                 //TODO: Send values through Bluetooth here
+                //Send left speed
+                //Send right speed
             } //thread stops outside loop
         }
 
@@ -75,7 +75,6 @@ public class GTADrive extends AppCompatActivity {
 
         setUpListeners();
         tDataTransfer.start();
-
     }
 
     private void setUpListeners(){
@@ -151,12 +150,6 @@ public class GTADrive extends AppCompatActivity {
         }
     }
 
-    private void sendToRobot(){
-        //TODO: Send values through Bluetooth here
-        //Send left speed
-        //Send right speed
-    }
-
     public void emergencyStop(View view){
         emergencyStop = true;
         rDataTransfer.stop();
@@ -170,12 +163,8 @@ public class GTADrive extends AppCompatActivity {
     public void stop(View view){
         throttle = 0;
 
-        sendToRobot();
-
         mThrottlePercentage.setText(String.valueOf(throttle) + "%");
 
         mThrottleInput.setProgress(RELATIVE_ZERO);
-
-        System.out.println(tDataTransfer.isAlive());
     }
 }
