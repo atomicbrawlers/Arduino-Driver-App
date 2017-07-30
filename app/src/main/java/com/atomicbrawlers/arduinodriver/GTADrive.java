@@ -78,6 +78,12 @@ public class GTADrive extends AppCompatActivity {
         tDataTransfer.start();
     }
 
+    @Override
+    protected void onPause(){
+        super.onPause();
+        rDataTransfer.stop();
+    }
+
     private void setUpListeners(){
         mSlewInput.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override

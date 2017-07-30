@@ -77,6 +77,12 @@ public class TankDrive extends AppCompatActivity {
         tDataTransfer.start();
     }
 
+    @Override
+    protected void onPause(){
+        super.onPause();
+        rDataTransfer.stop();
+    }
+
     private void setUpListeners(){
         mLeftDriveInput.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override

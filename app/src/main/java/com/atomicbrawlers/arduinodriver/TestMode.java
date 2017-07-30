@@ -86,12 +86,6 @@ public class TestMode extends AppCompatActivity {
     }
 
     @Override
-    protected void onResume(){
-        super.onResume();
-    //    recreate(); //INFINITE LOOP
-    }
-
-    @Override
     protected void onPause(){
         super.onPause();
         rDataTransfer.stop();
