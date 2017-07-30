@@ -39,10 +39,10 @@ public class GTADrive extends AppCompatActivity {
                 //Send left speed
                 //Send right speed
             } //thread stops outside loop
-            //TODO: Send motor values of ZERO here to ensure the robot stops
         }
 
         public void stop(){
+            //TODO: Run values of ZERO here to ensure robot stops
             exit = true;
         }
     }
@@ -153,8 +153,8 @@ public class GTADrive extends AppCompatActivity {
 
     public void emergencyStop(View view){
         emergencyStop = true;
-        rDataTransfer.stop();
         stop(view);
+        rDataTransfer.stop();
 
         mEmergencyStop.setBackgroundColor(getResources().getColor(holo_red_dark,  this.getTheme()));
         mEmergencyStop.setTextColor      (getResources().getColor(holo_red_light, this.getTheme()));
